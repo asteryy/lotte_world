@@ -1,0 +1,224 @@
+@charset "UTF-8";
+
+/* reset */
+*{margin: 0; padding: 0; font-size: 14px;}        /* 기본값은 16px */
+
+li{list-style: none; }   /* 블릿문자삭제 */
+a{text-decoration: none; /* a태그의 밑줄삭제 */
+  color: #333;}
+
+.clearfix:after{content: ""; clear: both; display: block;}
+
+
+/* wrap */
+#wrap{
+    width: 1000px;
+    border: 1px solid red;
+    margin: auto;
+}
+
+
+/* header */
+#header{}
+#header h1{
+    float: left;
+    width: 130px;
+    padding-top: 5px;
+}
+#header h1 a{}
+#header h1 a img{
+    width: 100%;    /* 블럭요소 부모의 넓이 100%에 맞춤. 따라서 h1 넓이를 가져감(a는 인라인요소라 안됨) */
+}
+
+#header .nav{
+    float: right;
+    margin-top: 20px;
+}
+#header .nav ul{}
+#header .nav ul li{
+    position: relative;
+    float: left;
+    width: 120px;
+    text-align: center;
+    background-color: blue;
+}
+#header .nav ul li a{          /* a는 인라인요소 (참고로 글자도 인라인요소)*/
+    background-color: #ccc;
+    padding: 20px 15px;        /* 인라인요소는 margin과 padding에서 좌우만 적용. 상하는 적용안됨 */
+    display: block;            /* 인라인요소를 블럭요소로 바꿔줌(부모가 자식의 높이에 영향을 븓게 됨) */
+                               /* a태그는 위에 커서를 올리면 화살표가 손모양으로 바뀜.
+                                  따라서 상단메뉴를 블럭요소로 해서 글자를 포함한 공간 어디를 눌러도
+                                  링크를 타고 갈 수 있게 하는 게 중요함. */
+    transition: 0.3s;
+}
+#header .nav ul li a:hover{     /* :hover --> 영역에 마우스가 진입하면 */
+    background-color: #ddd;
+}
+#header .nav ul li .submenu{
+    display: none;
+    position: absolute;
+    left: 0; top: 59px;
+    z-index: 10;
+}
+
+
+/* banner */
+#banner{height: 378px; overflow: hidden;}
+#banner .slideList{position: relative;}
+#banner .slideList .slideImg{position: relative;}
+#banner .slideList .slideImg h2{
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    padding: 10px 30px;
+    border-radius: 20px;
+}
+#banner .slideList .slideImg img{       /* img태그는 인라인요소지만 넓이 인식 가능 */
+    width: 100%;
+    vertical-align: top;                   /* img태그의 빈공간처리
+                                            1. display: block;
+                                            2. vertical-align: top; */
+}   
+
+
+/* content1 */
+#content1{margin-top: 15px;}
+#content1 .notice{
+    position: relative;   /* ul>li>ul>li 롯데월드소식과 뉴스공지가 같은 위치에 와야 하므로 박스인 notice에 position: relative; 설정 */ 
+    float: left;
+    width: 49%;
+    border: 1px solid #ccc;      
+    /* border-width: 1px; border-color: #ccc; border-style: solid; 와 같음 */
+    padding: 30px;
+    box-sizing: border-box;
+    height: 218px;
+}
+#content1 .notice ul{}
+#content1 .notice ul li{float: left;}
+#content1 .notice ul li a{
+    font-size: 24px;
+    color: #999;
+    font-weight: bold;  /* 폰트의 두께 */
+}
+#content1 .notice ul li.active a{color: #000;}
+
+#content1 .notice ul li ul{     /* ul안에 li가 2개이므로 2개의 li의 ul을 다 선택 */
+    position: absolute;
+    left: 30px; top: 70px;
+}
+#content1 .notice ul li ul li{}
+#content1 .notice ul li ul li a{
+    float: left;     /* float이나 position: absolute; 를 적용하면 본 성질을 잃어버림. 따라서 넓이 인식 가능. */
+    width: 68%;
+    /* 말줄임말 SET*/
+    white-space: nowrap;  /* 화면이 줄어든다고 해서 글자가 밑으로 떨어지지 않음(<-->normal(기본값)) */
+    text-overflow: ellipsis;  /* 자식이 부모보다 넘치면 '...'으로 표현 */
+    overflow: hidden;
+}
+#content1 .notice ul li ul li span{
+    float: right;
+    padding-right: 5%;
+}
+#content1 .ad{
+    float: right;
+    width: 49%;
+}
+#content1 .ad a{}
+#content1 .ad a img{width: 100%;}
+
+
+/* content2 */
+#content2{margin-top: 15px;}
+#content2 h2{margin-bottom: 10px;}
+#content2 ul{}
+#content2 ul li{
+    width: 24.25%; float: left;
+    margin-right: 1%;
+}
+#content2 ul li:last-child{margin-right: 0;}   /* :last-child --> li 중에서 막내 호출 */
+#content2 ul li div{overflow: hidden;}
+#content2 ul li div img{
+    width: 100%;
+    transition: 0.3s;}
+#content2 ul li div:hover img{transform: scale(1.2);}
+#content2 ul li span{}
+
+
+/* footer */
+#footer{
+    position: relative;
+    border-top: 1px solid #ccc;
+    margin-top: 30px;  /* 내 영역 밖에 공간을 만듦 */
+    padding: 30px 0;}  /* 내 영역 내에 공간을 만듦 */
+#footer address{font-style: normal;}  /* address태그는 기울체(italic).
+                                        평범하게 만드는게 normal */
+#footer address ul{width: 651px;}
+#footer address ul li{
+    display: inline;  /* inline요소는 margin, padding의 상하는 적용 안 됨, 좌우는 적용됨 */
+                                        /* margin과 padding을 백분율(%) 줄 때: 기준은 부모의 넓이 */
+    padding: 0 15px 0 10px;
+    position: relative;
+}        
+#footer address ul li:after{
+    content: "";
+    position: absolute;
+    right: 0; top: 4px;
+    width: 1px; height: 13px;
+    background-color: #666;
+}
+#footer address ul li:nth-child(3):after{height: 0; width: 0;}  /* 옆의 bar를 없앰 */
+#footer address ul li:last-child:after{height: 0; width: 0;}
+#footer address ul li.left {padding-left: 0;}
+#footer address p{
+    text-transform: uppercase;  /* --> 대문자 */
+    padding-top: 30px;
+}
+
+.ani_txt{
+    position: absolute;    /* 기준이 될 footer에 position: relative; 적용 */
+    top: 30px; right: 0;
+    width: 210px; height: 20px;
+    border: 1px solid #ccc;
+    overflow: hidden;
+}
+.ani_txt ul{
+    position: relative;
+    left: 10px; top: 0;
+    animation: text_ani 6s infinite;    
+}
+.ani_txt ul li{}
+.ani_txt ul li a{}
+
+@keyframes text_ani{
+    0%{top: 0}
+    20%{top: -19px}
+    40%{top: -37px}
+    60%{top: -57px}
+    80%{top: -76px}
+    100%{top: -95px}
+}
+
+
+/* 팝업 */
+.layer-bg{
+    display: none;
+    position: fixed;
+    left: 0; top: 0; right: 0; bottom: 0;
+                    /* = width: 100%; height: 100%; */
+    background-color: rgba(0,0,0,0.8);
+}
+.layer-bg .layer{
+    background-color: #fff;
+    position: absolute;
+    left: 50%; top: 50%;
+    transform: translate(-50%,-50%);   /* 반만큼 앞으로, 반만큼 위로 */
+    width: 500px; height: 500px;
+    padding: 30px;
+}
+.layer-bg .layer h2{font-size: 35px;}
+.layer-bg .layer .close{
+    position: absolute;
+    bottom: 30px; right: 30px;
+}
